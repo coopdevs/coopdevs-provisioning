@@ -1,0 +1,19 @@
+---
+- name: Add nginx ppa
+  apt_repository:
+    repo: 'ppa:nginx/stable'
+    state: present
+    update_cache: yes
+
+- name: Install nginx package
+  apt:
+    name: 'nginx'
+    state: present
+
+- name: Add `www-data` user to `coopdevs` group
+  user:
+    name: www-data
+    groups: coopdevs
+    group: www-data
+    shell: /bin/bash
+    append: yes

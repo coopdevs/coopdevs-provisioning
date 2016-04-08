@@ -1,0 +1,20 @@
+---
+- include: file_system.yml
+
+- name: Clone coopdevs Git bare repository
+  git:
+    repo: https://github.com/coopdevs/coopdevs.github.io
+    dest: /home/ubuntu/repos/coopdevs.github.io.git
+    bare: yes
+
+- name: Copy Git hook
+  copy:
+    src: roles/coopdevs.org/files/post-receive
+    dest: /home/ubuntu/repos/coopdevs.github.io.git/hooks/post-receive
+    mode: 'u+x'
+
+- name: Write coopdevs NGINX configuration
+  copy:
+    src: roles/coopdevs.org/files/coopdevs.conf
+    dest: /etc/nginx/sites-enabled/coopdevs.conf
+  notify: Reload NGINX

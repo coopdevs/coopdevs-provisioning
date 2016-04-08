@@ -1,0 +1,6 @@
+---
+- name: Create sites directory
+  file: path=/opt/sites state=directory group=coopdevs owner=ubuntu mode=2775
+
+- name: Create Git bare repositories directory
+  file: path=/home/ubuntu/repos state=directory group=coopdevs owner=ubuntu mode=2775

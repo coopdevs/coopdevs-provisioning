@@ -1,0 +1,17 @@
+---
+- include: install_packages.yml
+
+- name: Write nginx.conf
+  copy:
+    src: roles/http-server/files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Remove default nginx site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Remove default nginx HTML
+  file:
+    path: /var/www/html/index.nginx-debian.html
+    state: absent

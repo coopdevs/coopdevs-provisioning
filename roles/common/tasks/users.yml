@@ -1,0 +1,15 @@
+---
+- name: Write bash_profile for `ubuntu` user
+  template:
+    src: bash_profile
+    dest: /home/ubuntu/.bash_profile
+    group: ubuntu
+    mode: 0644
+
+- name: Add `ubuntu` user to `coopdevs` group
+  user:
+    name: ubuntu
+    groups: coopdevs
+    group: ubuntu
+    shell: /bin/bash
+    append: yes

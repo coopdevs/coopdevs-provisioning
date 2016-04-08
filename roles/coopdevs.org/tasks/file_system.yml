@@ -1,0 +1,3 @@
+---
+- name: Create site directory
+  file: path=/opt/sites/coopdevs state=directory group=coopdevs owner=ubuntu mode=2775

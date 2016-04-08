@@ -1,0 +1,9 @@
+---
+- hosts: coopdevs.org
+  remote_user: ubuntu
+  become: yes
+
+  roles:
+    - common
+    - http-server
+    - coopdevs.org

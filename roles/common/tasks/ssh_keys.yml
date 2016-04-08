@@ -1,0 +1,7 @@
+---
+- name: Add SSH keys to `ubuntu` user
+  authorized_key:
+    user: ubuntu
+    key: '{{ item }}'
+  with_file:
+    - public_keys/enrico

@@ -1,0 +1,5 @@
+---
+- name: Create `coopdevs` group
+  group:
+    name: coopdevs
+    state: present

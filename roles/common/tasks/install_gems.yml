@@ -1,0 +1,12 @@
+---
+- name: Install Bundler gem
+  gem:
+    name: bundler
+    state: latest
+    user_install: no
+
+- name: Install Jekyll gem
+  gem:
+    name: jekyll
+    state: latest
+    user_install: no
