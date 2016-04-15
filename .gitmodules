@@ -1,0 +1,3 @@
+[submodule "vendor/nginx-http-accept-lang"]
+	path = vendor/nginx-http-accept-lang
+	url = git@github.com:fghibellini/nginx-http-accept-lang

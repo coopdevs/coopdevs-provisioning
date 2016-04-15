@@ -4,3 +4,6 @@
 
 - name: Create Git bare repositories directory
   file: path=/home/ubuntu/repos state=directory group=coopdevs owner=ubuntu mode=2775
+
+- name: Create shared directory
+  file: path=/home/ubuntu/shared state=directory group=coopdevs owner=ubuntu mode=2775
