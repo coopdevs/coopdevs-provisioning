@@ -1,0 +1,21 @@
+---
+- include: locales.yml
+- include: file_system.yml
+
+- name: Clone discourse_docker Git repository
+  become: yes
+  become_user: ubuntu
+  git:
+    repo: https://github.com/discourse/discourse_docker.git
+    dest: /var/discourse
+
+- name: Copy discourse standalone configuration
+  template:
+    src: roles/discourse/templates/app.yml.j2
+    dest: /var/discourse/containers/app.yml
+
+- name: Write discourse NGINX configuration
+  copy:
+    src: roles/discourse/files/discourse.conf
+    dest: /etc/nginx/sites-enabled/discourse.conf
+  notify: Reload NGINX

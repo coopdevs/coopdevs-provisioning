@@ -1,0 +1,10 @@
+---
+- name: Install locales
+  locale_gen:
+    name: es_ES.UTF-8
+    state: present
+  notify: Generate locales
+
+- name: Set locales
+  become: yes
+  template: src=default_locale.j2 dest=/etc/default/locale

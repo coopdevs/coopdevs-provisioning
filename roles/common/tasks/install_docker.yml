@@ -1,0 +1,14 @@
+---
+- name: Copy Docker apt source list
+  copy:
+    src: 'roles/common/files/apt_sources_lists/docker.list'
+    dest: '/etc/apt/sources.list.d/docker.list'
+
+- name: Install Docker packages
+  apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: yes
+  with_items:
+    - 'apparmor'
+    - 'docker-engine'

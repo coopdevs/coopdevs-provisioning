@@ -1,0 +1,3 @@
+---
+- name: Create discourse directory
+  file: path=/var/discourse state=directory group=coopdevs owner=ubuntu mode=2775

@@ -3,3 +3,8 @@
   group:
     name: coopdevs
     state: present
+
+- name: Create `docker` group
+  group:
+    name: docker
+    state: present

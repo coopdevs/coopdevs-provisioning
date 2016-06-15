@@ -1,0 +1,8 @@
+---
+- name: Reload NGINX
+  service:
+    name: nginx
+    state: reloaded
+
+- name: Generate locales
+  command: locale-gen

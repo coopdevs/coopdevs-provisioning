@@ -6,10 +6,10 @@
     group: ubuntu
     mode: 0644
 
-- name: Add `ubuntu` user to `coopdevs` group
+- name: Add `ubuntu` user to `coopdevs` and `docker` groups
   user:
     name: ubuntu
-    groups: coopdevs
+    groups: 'coopdevs,docker'
     group: ubuntu
     shell: /bin/bash
     append: yes

@@ -1,0 +1,3 @@
+discourse_developer_emails: "{{ vault_discourse_developer_emails }}"
+discourse_smtp_user_name: "{{ vault_discourse_smtp_user_name }}"
+discourse_smtp_password: "{{ vault_discourse_smtp_password }}"
