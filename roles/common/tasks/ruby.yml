@@ -1,8 +1,5 @@
 ---
-- name: Add BrightBox ruby ppa
-  apt_repository: repo=ppa:brightbox/ruby-ng state=present
-
-- name: Install BrightBox ruby 2.3 package
+- name: Install ruby 2.3 packages
   apt:
     name: "{{item}}"
     state: present

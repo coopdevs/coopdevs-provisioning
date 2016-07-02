@@ -6,6 +6,18 @@
     src: roles/http-server/files/nginx.conf
     dest: /etc/nginx/nginx.conf
 
+- name: Create shared nginx directory
+  file:
+    path: /home/ubuntu/shared/nginx
+    state: directory
+
+- name: Copy the lua lang module
+  notify: Reload NGINX
+  copy:
+    src: vendor/nginx-http-accept-lang/lang.lua
+    dest: /home/ubuntu/shared/nginx/lang.lua
+    mode: 'u+x'
+
 - name: Remove default nginx site
   file:
     path: /etc/nginx/sites-enabled/default

@@ -7,7 +7,7 @@
 
 - name: Install nginx package
   apt:
-    name: 'nginx'
+    name: 'nginx-extras'
     state: present
 
 - name: Add `www-data` user to `coopdevs` group
