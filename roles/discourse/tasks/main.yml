@@ -1,10 +1,10 @@
 ---
 - include: locales.yml
-- include: file_system.yml
+  #- include: file_system.yml
 
 - name: Clone discourse_docker Git repository
   become: yes
-  become_user: ubuntu
+  become_user: root
   git:
     repo: https://github.com/discourse/discourse_docker.git
     dest: /var/discourse

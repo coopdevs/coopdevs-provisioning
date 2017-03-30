@@ -12,17 +12,16 @@ templates:
   - "templates/redis.template.yml"
   - "templates/web.template.yml"
   - "templates/web.ratelimited.template.yml"
-  - "templates/web.socketed.template.yml"
 ## Uncomment these two lines if you wish to add Lets Encrypt (https)
   #- "templates/web.ssl.template.yml"
   #- "templates/web.letsencrypt.ssl.template.yml"
-
+ 
 ## which TCP/IP ports should this container expose?
 ## If you want Discourse to share a port with another webserver like Apache or nginx,
 ## see https://meta.discourse.org/t/17247 for details
 expose:
   - "80:80"   # http
-##   - "443:443" # https
+  - "443:443" # https
 
 params:
   db_default_text_search_config: "pg_catalog.spanish"
@@ -30,39 +29,39 @@ params:
   ## Set db_shared_buffers to a max of 25% of the total memory.
   ## will be set automatically by bootstrap based on detected RAM, or you can override
   db_shared_buffers: "256MB"
-
+  
   ## can improve sorting performance, but adds memory usage per-connection
   #db_work_mem: "40MB"
-
+  
   ## Which Git revision should this container use? (default: tests-passed)
   #version: tests-passed
 
 env:
   LANG: es_ES.UTF-8
-  DISCOURSE_DEFAULT_LOCALE: es
+  DISCOURSE_DEFAULT_LOCALE: en
 
   ## How many concurrent web requests are supported? Depends on memory and CPU cores.
   ## will be set automatically by bootstrap based on detected CPUs, or you can override
   UNICORN_WORKERS: 4
 
   ## TODO: The domain name this Discourse instance will respond to
-  DISCOURSE_HOSTNAME: 'community.coopdevs.org'
-
+  DISCOURSE_HOSTNAME: community.coopdevs.org
+  
   ## Uncomment if you want the container to be started with the same
   ## hostname (-h option) as specified above (default "$hostname-$config")
   #DOCKER_USE_HOSTNAME: true
 
   ## TODO: List of comma delimited emails that will be made admin and developer
   ## on initial signup example 'user1@example.com,user2@example.com'
-  DISCOURSE_DEVELOPER_EMAILS: "{{ discourse_developer_emails }}"
+  DISCOURSE_DEVELOPER_EMAILS: 'enricostn@gmail.com'
 
   ## TODO: The SMTP mail server used to validate new accounts and send notifications
-  DISCOURSE_SMTP_ADDRESS: smtp.mailgun.org         # required
-  #DISCOURSE_SMTP_PORT: 587                        # (optional, default 587)
-  DISCOURSE_SMTP_USER_NAME: "{{ discourse_smtp_user_name }}"
-  DISCOURSE_SMTP_PASSWORD: "{{ discourse_smtp_password }}"
+  DISCOURSE_SMTP_ADDRESS: smtp.mailgun.org
+  DISCOURSE_SMTP_PORT: 587
+  DISCOURSE_SMTP_USER_NAME: postmaster@mg.coopdevs.org
+  DISCOURSE_SMTP_PASSWORD: "2cfa808e2c845c66c72236f06f4b1503"
   #DISCOURSE_SMTP_ENABLE_START_TLS: true           # (optional, default true)
-
+  
   ## If you added the Lets Encrypt template, uncomment below to get a free SSL certificate
   #LETSENCRYPT_ACCOUNT_EMAIL: me@example.com
 

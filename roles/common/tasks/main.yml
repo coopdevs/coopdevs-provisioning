@@ -5,6 +5,6 @@
 - include: gpg_keys.yml
 - include: install_packages.yml
 - include: install_docker.yml
-- include: ruby.yml
-- include: install_gems.yml
+  # - include: ruby.yml
+  # - include: install_gems.yml
 - include: secrets.yml
