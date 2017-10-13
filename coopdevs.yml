@@ -3,6 +3,9 @@
   remote_user: ubuntu
   become: yes
 
+  vars:
+    - sites_dir: /opt/sites
+
   roles:
     - common
     - http-server
