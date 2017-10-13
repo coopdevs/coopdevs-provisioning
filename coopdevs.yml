@@ -1,5 +1,5 @@
 ---
-- hosts: coopdevs.org
+- hosts: coopdevs
   remote_user: ubuntu
   become: yes
 
