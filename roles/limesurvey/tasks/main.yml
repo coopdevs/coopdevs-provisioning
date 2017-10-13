@@ -1,0 +1,19 @@
+---
+- name: Download limesurvey compressed archive
+  get_url:
+    url: https://www.limesurvey.org/stable-release?download=2144:limesurvey2721%20171012targz
+    dest: /tmp/limesurvey.tar.gz
+    checksum: sha256:8f3a4f73daee73ac989996ed1f6f79b6d628e7fbbd0f3d9bba79354747b4fd70
+
+- name: Create user and group
+  user:
+    name: "{{ limesurvey_user }}"
+
+- name: Decompress limesurvey
+  unarchive:
+    src: /tmp/limesurvey.tar.gz
+    dest: "{{ limesurvey_base_dir }}"
+    remote_src: true
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+    mode: 2755

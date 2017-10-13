@@ -11,3 +11,9 @@
     - http-server
     - coopdevs.org
     - role: vendor/geerlingguy.postgresql
+    - role: limesurvey
+      vars:
+        - limesurvey_base_dir: "{{ sites_dir }}"
+        - limesurvey_dir: "{{ limesurvey_base_dir }}/limesurvey"
+        - limesurvey_user: limesurvey
+        - limesurvey_group: limesurvey
