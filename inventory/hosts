@@ -1,2 +1,5 @@
-[coopdevs]
+[coopdevs:children]
+dev
+
+[dev]
 local.coopdevs.org
