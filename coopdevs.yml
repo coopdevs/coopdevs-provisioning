@@ -5,12 +5,24 @@
 
   vars:
     - sites_dir: /opt/sites
+    - limesurvey_db_name: limesurvey
+    - limesurvey_db_user: limesurvey
 
   roles:
     - common
     - http-server
     - coopdevs.org
     - role: vendor/geerlingguy.postgresql
+      vars:
+        - postgresql_databases:
+          - name: "{{ limesurvey_db_name }}"
+        - postgresql_users:
+          - name: "{{ limesurvey_db_user }}"
+            password: "{{ limesurvey_db_pass }}"
+            db: "{{ limesurvey_db_name }}"
+        - postgresql_hba_entries:
+          - { type: local, database: all, user: postgres, auth_method: peer }
+          - { type: host, address: "127.0.0.1/32", database: "{{ limesurvey_db_name }}", user: "{{ limesurvey_db_user }}", auth_method: md5 }
     - role: limesurvey
       vars:
         - limesurvey_base_dir: "{{ sites_dir }}"
