@@ -15,5 +15,29 @@
     dest: "{{ limesurvey_base_dir }}"
     remote_src: true
     owner: "{{ limesurvey_user }}"
+    group: www-data
+    mode: 02775
+
+- name: Create Nginx configuration
+  template:
+    src: limesurvey.conf.j2
+    dest: /etc/nginx/sites-available/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
     group: "{{ limesurvey_group }}"
-    mode: 2755
+
+- name: Enable Nginx configuration
+  file:
+    src: /etc/nginx/sites-available/limesurvey.conf
+    dest: /etc/nginx/sites-enabled/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+    state: link
+  notify: restart webserver
+
+- name: Create php-fpm pool configuration
+  copy:
+    src: limesurvey_fpm.conf
+    dest: /etc/php/7.0/fpm/pool.d/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+  notify: restart php-fpm

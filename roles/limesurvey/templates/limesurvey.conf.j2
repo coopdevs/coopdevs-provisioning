@@ -1,0 +1,29 @@
+upstream php {
+  server unix:/var/run/php/php7.0-fpm.sock;
+}
+
+server {
+  listen   80;
+  root {{ limesurvey_dir }};
+  index index.php index.html index.htm;
+  server_name forms.coopdevs.org;
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  location ~ .php$ {
+    # This splits the URI into two variables:
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+    # For the sake of security, don't pass non-existing files.
+    try_files $fastcgi_script_name =404;
+
+    # Include environment defaults for FastCGI
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+    fastcgi_index index.php;
+    fastcgi_pass php;
+  }
+}
