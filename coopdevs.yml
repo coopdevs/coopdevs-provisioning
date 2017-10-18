@@ -43,3 +43,4 @@
         - limesurvey_dir: "{{ limesurvey_base_dir }}/limesurvey"
         - limesurvey_user: limesurvey
         - limesurvey_group: limesurvey
+    - role: discourse
