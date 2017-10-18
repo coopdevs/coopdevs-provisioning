@@ -6,7 +6,7 @@ server {
   listen   80;
   root {{ limesurvey_dir }};
   index index.php index.html index.htm;
-  server_name forms.coopdevs.org;
+  server_name {{ limesurvey_server_name }};
 
   location / {
     try_files $uri $uri/ =404;
