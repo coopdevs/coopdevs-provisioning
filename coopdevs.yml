@@ -35,6 +35,7 @@
           - php-gd
           - php-apcu
           - php-fpm
+          - php-xml
         - php_webserver_daemon: nginx
         - php_enable_php_fpm: true
     - role: limesurvey
