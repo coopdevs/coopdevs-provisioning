@@ -1,0 +1,12 @@
+---
+- name: Create Nginx configuration
+  template:
+    src: discourse_nginx.conf.j2
+    dest: /etc/nginx/sites-available/discourse.conf
+
+- name: Enable Nginx configuration
+  file:
+    src: /etc/nginx/sites-available/discourse.conf
+    dest: /etc/nginx/sites-enabled/discourse.conf
+    state: link
+  notify: restart webserver

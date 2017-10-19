@@ -16,5 +16,6 @@
 - name: Write coopdevs NGINX configuration
   copy:
     src: roles/coopdevs.org/files/coopdevs.conf
-    dest: /etc/nginx/sites-enabled/coopdevs.conf
-  notify: Reload NGINX
+    dest: /etc/nginx/sites-available/coopdevs.conf
+
+# Enable coopdevs nginx conf once it's ready

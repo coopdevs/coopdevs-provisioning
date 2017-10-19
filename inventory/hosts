@@ -1,0 +1,9 @@
+[coopdevs:children]
+dev
+production
+
+[dev]
+local.coopdevs.org
+
+[production]
+163.172.165.27

@@ -1,0 +1,43 @@
+---
+- name: Download limesurvey compressed archive
+  get_url:
+    url: https://www.limesurvey.org/stable-release?download=2149:limesurvey2722%20171017targz
+    dest: /tmp/limesurvey.tar.gz
+    checksum: sha256:fdca4c9193447277afeedd70b9ddad91b8e44c9a1091e3f633cca1cdd51c8916
+
+- name: Create user and group
+  user:
+    name: "{{ limesurvey_user }}"
+
+- name: Decompress limesurvey
+  unarchive:
+    src: /tmp/limesurvey.tar.gz
+    dest: "{{ limesurvey_base_dir }}"
+    remote_src: true
+    owner: "{{ limesurvey_user }}"
+    group: www-data
+    mode: 02775
+
+- name: Create Nginx configuration
+  template:
+    src: limesurvey.conf.j2
+    dest: /etc/nginx/sites-available/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+
+- name: Enable Nginx configuration
+  file:
+    src: /etc/nginx/sites-available/limesurvey.conf
+    dest: /etc/nginx/sites-enabled/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+    state: link
+  notify: restart webserver
+
+- name: Create php-fpm pool configuration
+  copy:
+    src: limesurvey_fpm.conf
+    dest: /etc/php/7.0/fpm/pool.d/limesurvey.conf
+    owner: "{{ limesurvey_user }}"
+    group: "{{ limesurvey_group }}"
+  notify: restart php-fpm
