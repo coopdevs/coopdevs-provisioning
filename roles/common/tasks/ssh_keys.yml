@@ -6,3 +6,4 @@
   with_file:
     - public_keys/enrico
     - public_keys/rewritten
+    - public_keys/dani
