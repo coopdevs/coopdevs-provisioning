@@ -1,0 +1,8 @@
+---
+- name: Install SSL certificates
+  include_role:
+    name: vendor/coopdevs.certbot_nginx
+    tasks_from: certificate.yml
+  with_items: "{{ domain_names }}"
+  loop_control:
+    loop_var: domain_name
