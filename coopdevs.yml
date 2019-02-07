@@ -45,3 +45,11 @@
         - limesurvey_user: limesurvey
         - limesurvey_group: limesurvey
     - role: discourse
+    - role: vendor/coopdevs.certbot_nginx
+      vars:
+        letsencrypt_email: info@coopdevs.org
+    - role: letsencrypt
+      vars:
+        domain_names:
+          - community.coopdevs.org
+          - forms.coopdevs.org
